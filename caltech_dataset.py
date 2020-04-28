@@ -30,8 +30,8 @@ class Caltech(VisionDataset):
         super(Caltech, self).__init__(root, transform=transform, target_transform=target_transform)
 
         self.split = split
-
         split_path = root + "/" + self.split + ".txt"
+        file_path = root.split("/")[0] + "/" + self.split + ".txt"
         with open(split_path, "r" ) as sp:
             row = sp.read()
             img = pil_loader(split_path+"/"+row)
