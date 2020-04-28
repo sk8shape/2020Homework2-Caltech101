@@ -11,7 +11,7 @@ class data_elem:
         self.sample = image
         self.lbl = label
 
-    def get_sample(self):
+    def get_image(self):
         return self.sample
     def get_label(self):
         return self.lbl
