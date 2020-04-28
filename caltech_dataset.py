@@ -30,18 +30,15 @@ class Caltech(VisionDataset):
         super(Caltech, self).__init__(root, transform=transform, target_transform=target_transform)
 
         self.split = split
-        file_path = root.split("/")[0] + "/" + self.split + ".txt"
-        with open(file_path, "r" ) as sp:
-            split_path = root + "/" + self.split + ".txt"
-            row = sp.read()
+        file_path = "Caltech101" + "/" + self.split + ".txt"
+        with open(file_path, "r" ) as fp:
+            row = fp.read()
             img = pil_loader(split_path+"/"+row)
             item = data_elem(img,row.split("/")[0])
             my_dataset.append(item)
 
     def __getitem__(self, index):
-
         image, label =   my_dataset[index].get_image(), my_dataset[index].get_label()
-
         if self.transform is not None:
             image = self.transform(image)
 
