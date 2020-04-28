@@ -7,7 +7,7 @@ import os.path
 import sys
 
 class data_elem:
-    __init__(self, image, label):
+    def __init__(self, image, label):
         self.sample = image
         self.lbl = label
 
