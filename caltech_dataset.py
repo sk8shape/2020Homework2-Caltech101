@@ -25,10 +25,10 @@ def pil_loader(path):
 
 class Caltech(VisionDataset):
 
-    my_dataset = []
+
     def __init__(self, root, split='train', transform=None, target_transform=None):
         super(Caltech, self).__init__(root, transform=transform, target_transform=target_transform)
-
+        self.my_dataset = []
         self.split = split
         file_path = "Caltech101" + "/" + self.split + ".txt"
         print (file_path)
@@ -37,10 +37,10 @@ class Caltech(VisionDataset):
                 row = line.rstrip("\r\n")
                 img = pil_loader(root + "/" + row)
                 item = data_elem(img,row.split("/")[0])
-                my_dataset.append(item)
+                self.my_dataset.append(item)
 
     def __getitem__(self, index):
-        image, label =   my_dataset[index].get_image(), my_dataset[index].get_label()
+        image, label =   self.my_dataset[index].get_image(), self.my_dataset[index].get_label()
         if self.transform is not None:
             image = self.transform(image)
 
