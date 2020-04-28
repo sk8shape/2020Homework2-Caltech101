@@ -31,6 +31,7 @@ class Caltech(VisionDataset):
 
         self.split = split
         file_path = "Caltech101" + "/" + self.split + ".txt"
+        print (file_path)
         with open(file_path, "r" ) as fp:
             for line in fp:
                 row = line.rstrip("\r\n")

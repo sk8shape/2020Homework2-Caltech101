@@ -1,7 +1,11 @@
+split = "train"
+file_path = split + ".txt"
+root = "Caltech101"
 i = 0
-with open ("test.txt") as f:
-
-    for line in f:
-        print(line.split("/")[0])
-        print (line.rstrip("\n\r") + " " + str(i))
+with open(file_path, "r" ) as fp:
+    for line in fp:
+        row = line
+        print(root + "/" + row + " " + str(i))
+        # item = data_elem(img,row.split("/")[0])
+        # my_dataset.append(item)
         i += 1
