@@ -31,8 +31,10 @@ class Caltech(VisionDataset):
 
         self.split = split
         split_path = root + "/" + self.split + ".txt"
+        print (split_path)
         file_path = root.split("/")[0] + "/" + self.split + ".txt"
-        with open(split_path, "r" ) as sp:
+        print (file_path)
+        with open(file_path, "r" ) as sp:
             row = sp.read()
             img = pil_loader(split_path+"/"+row)
             item = data_elem(img,row.split("/")[0])
