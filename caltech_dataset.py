@@ -47,5 +47,5 @@ class Caltech(VisionDataset):
         return image, label
 
     def __len__(self):
-        length = len(my_dataset)
+        length = len(self.my_dataset)
         return length
