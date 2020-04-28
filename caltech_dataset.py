@@ -32,7 +32,7 @@ class Caltech(VisionDataset):
         self.split = split
         file_path = "Caltech101" + "/" + self.split + ".txt"
         with open(file_path, "r" ) as fp:
-            row = fp.read()
+            row = fp.read().rstrip("\r\n")
             img = pil_loader(root + "/" + row)
             item = data_elem(img,row.split("/")[0])
             my_dataset.append(item)
