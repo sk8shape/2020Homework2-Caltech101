@@ -31,7 +31,7 @@ eval_transform = transforms.Compose([transforms.Resize(256),
                                       transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
 ])
 
-DATA_DIR = '101_ObjectCategories'
+DATA_DIR = '.'
 from caltech_dataset import Caltech
 
 
