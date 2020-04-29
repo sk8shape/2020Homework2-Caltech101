@@ -46,8 +46,9 @@ class Caltech(VisionDataset):
                     self.labels.append(label_tmp)
 
         unique_labels = np.unique(self.labels)
-        for lab in labels:
-            self.labels_indx.append(unique_labels.index(lab))
+        for lab in self.labels:
+            self.labels_indx.append(list(unique_labels).index(lab))
+        print(self.labels_indx)
 
     def __getitem__(self, index):
         image, label =   self.images_dataset[index], self.labels_indx[index]
