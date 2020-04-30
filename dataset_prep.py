@@ -39,5 +39,4 @@ train_dataset = Caltech(DATA_DIR, split='train',  transform=train_transform)
 test_dataset = Caltech(DATA_DIR, split='test', transform=eval_transform)
 
 print('Train Dataset: {}'.format(len(train_dataset)))
-print('Valid Dataset: {}'.format(len(val_dataset)))
 print('Test Dataset: {}'.format(len(test_dataset)))

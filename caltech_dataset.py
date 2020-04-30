@@ -7,17 +7,6 @@ import os.path
 import sys
 import numpy as np
 
-class data_elem:
-    def __init__(self, image, label):
-        self.sample = image
-        self.lbl = label
-
-    def get_image(self):
-        return self.sample
-    def get_label(self):
-        return self.lbl
-
-
 def pil_loader(path):
     with open(path, 'rb') as f:
         img = Image.open(f)
@@ -26,19 +15,20 @@ def pil_loader(path):
 
 class Caltech(VisionDataset):
 
-    images_dataset = []
-    labels = []
-    labels_indx = []
+
 
     def __init__(self, root, split='train', transform=None, target_transform=None):
         super(Caltech, self).__init__(root, transform=transform, target_transform=target_transform)
 
         self.split = split
+        self.fimages_dataset = []
+        self.labels = []
+        self.labels_indx = []
         file_path = "Caltech101" + "/" + self.split + ".txt"
         print (file_path)
         with open(file_path, "r" ) as fp:
             for line in fp:
-                row = line.rstrip("\r\n")
+                row = line.strip("\n")
                 label_tmp = row.split("/")[0]
                 if (label_tmp != "BACKGROUND_Google"):
                     img = pil_loader(root + "/" + row)
@@ -48,7 +38,7 @@ class Caltech(VisionDataset):
         unique_labels = np.unique(self.labels)
         for lab in self.labels:
             self.labels_indx.append(list(unique_labels).index(lab))
-
+        print (len(self.images_dataset))
 
     def __getitem__(self, index):
         image, label =   self.images_dataset[index], self.labels_indx[index]
