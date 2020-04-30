@@ -21,7 +21,7 @@ class Caltech(VisionDataset):
         super(Caltech, self).__init__(root, transform=transform, target_transform=target_transform)
 
         self.split = split
-        self.fimages_dataset = []
+        self.images_dataset = []
         self.labels = []
         self.labels_indx = []
         file_path = "Caltech101" + "/" + self.split + ".txt"
