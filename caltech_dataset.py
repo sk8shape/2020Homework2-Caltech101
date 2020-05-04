@@ -53,7 +53,7 @@ class Caltech(VisionDataset):
         length = len(self.images_dataset)
         return length
 
-    def split(self, ratio):
+    def split_sets(self, ratio):
 
         tmp_train = []
         tmp_val = []
