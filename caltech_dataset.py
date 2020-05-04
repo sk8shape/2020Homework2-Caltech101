@@ -1,5 +1,5 @@
 from torchvision.datasets import VisionDataset
-
+from sklearn.model_selection import train_test_split
 from PIL import Image
 
 import os
@@ -24,6 +24,8 @@ class Caltech(VisionDataset):
         self.images_dataset = []
         self.labels = []
         self.labels_indx = []
+        self.unique_labels = []
+
         file_path = "Caltech101" + "/" + self.split + ".txt"
         print (file_path)
         with open(file_path, "r" ) as fp:
@@ -35,10 +37,10 @@ class Caltech(VisionDataset):
                     self.images_dataset.append(img)
                     self.labels.append(label_tmp)
 
-        unique_labels = np.unique(self.labels)
+        self.unique_labels = np.unique(self.labels)
         for lab in self.labels:
             self.labels_indx.append(list(unique_labels).index(lab))
-        print (len(self.images_dataset))
+
 
     def __getitem__(self, index):
         image, label =   self.images_dataset[index], self.labels_indx[index]
@@ -50,3 +52,21 @@ class Caltech(VisionDataset):
     def __len__(self):
         length = len(self.images_dataset)
         return length
+
+    def split(self, ratio):
+
+        tmp_train = []
+        tmp_val = []
+        train_set = []
+        val_set = []
+
+        for ul in len(self.unique_labels):
+            tmp = []
+            for li in self.labels_indx:
+                if(li == ul):
+                    tmp.append(li)
+            tmp_train, tmp_val = train_test_split(tmp, test_size = ratio)
+            train_set.append(tmp_train)
+            val_set.append(tmp_val)
+
+        return train_set, val_set
