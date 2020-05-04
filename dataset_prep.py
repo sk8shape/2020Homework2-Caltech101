@@ -38,5 +38,8 @@ from caltech_dataset import Caltech
 train_dataset = Caltech(DATA_DIR, split='train',  transform=train_transform)
 test_dataset = Caltech(DATA_DIR, split='test', transform=eval_transform)
 
+
+train_dataset, val_dataset = train_dataset.split_good(0.5)
+
 print('Train Dataset: {}'.format(len(train_dataset)))
 print('Test Dataset: {}'.format(len(test_dataset)))

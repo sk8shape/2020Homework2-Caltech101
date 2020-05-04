@@ -39,7 +39,7 @@ class Caltech(VisionDataset):
 
         self.unique_labels = np.unique(self.labels)
         for lab in self.labels:
-            self.labels_indx.append(list(unique_labels).index(lab))
+            self.labels_indx.append(list(self.unique_labels).index(lab))
 
 
     def __getitem__(self, index):
@@ -53,20 +53,20 @@ class Caltech(VisionDataset):
         length = len(self.images_dataset)
         return length
 
-    def split(self, ratio):
+    def split_good(self, ratio):
 
         tmp_train = []
         tmp_val = []
         train_set = []
         val_set = []
 
-        for ul in len(self.unique_labels):
+        for ul in range(len(self.unique_labels)):
             tmp = []
             for li in self.labels_indx:
                 if(li == ul):
                     tmp.append(li)
             tmp_train, tmp_val = train_test_split(tmp, test_size = ratio)
-            train_set.append(tmp_train)
-            val_set.append(tmp_val)
+            train_set.extend(tmp_train)
+            val_set.extend(tmp_val)
 
         return train_set, val_set
