@@ -53,20 +53,24 @@ class Caltech(VisionDataset):
         length = len(self.images_dataset)
         return length
 
+
     def split_sets(self, ratio):
 
         tmp_train = []
         tmp_val = []
         train_set = []
         val_set = []
-
+        i = 0
         for ul in range(len(self.unique_labels)):
             tmp = []
             for li in self.labels_indx:
                 if(li == ul):
                     tmp.append(li)
+                i += 1
+
             tmp_train, tmp_val = train_test_split(tmp, test_size = ratio)
             train_set.extend(tmp_train)
             val_set.extend(tmp_val)
+
 
         return train_set, val_set
